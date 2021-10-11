@@ -1,30 +1,7 @@
-/*
-   YARA Rule Set
-   Author: Jonathon Sweeney
-   Date: 2021-10-08
-   Identifier: Malware
-   Reference: Unverified Internal Research
-*/
-
-/* Rule Set ----------------------------------------------------------------- */
-
-
-
-rule conti_yara {
-   meta:
-      description = "Conti Ransomware YARA Detection"
-      author = "Jonathon Sweeney"
-      reference = "Internal Research - ALL YARA RULES ARE UNVERIFIED/UNTESTED!"
-      date = "2021-10-11"
-
-   strings:
-
       $s1 = "Rimasta.exe.com" fullword ascii
       $s2 = "cmd /c cmd < " fullword ascii
       $s3 = "start Rimasta.exe.com J" fullword ascii
       $s4 = "Set iLYXf=ping localhost" fullword ascii
-      $s5 = "<nul set /p = \" fullword ascii
-      $s6 = "if %computername%==%" fullword ascii
       $s7 = "Adyask44.elo" fullword ascii
       $s8 = "Passaggio.docm" fullword ascii
       $s9 = "Vederlo.docm" fullword ascii
@@ -100,8 +77,6 @@ rule conti_yara {
       $s79 = "flapalinta1950@protonmail.com" fullword ascii
 
 condition:
-          (uint16(0) == 0x5a4d or uint16(0) == 0x6c41)
-
- and filesize < 9000KB and 8 of ($s*)
+          filesize < 9000KB and 4 of ($s*)
 
 }
