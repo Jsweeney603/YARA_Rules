@@ -1,0 +1,107 @@
+/*
+   YARA Rule Set
+   Author: Jonathon Sweeney
+   Date: 2021-10-08
+   Identifier: Malware
+   Reference: Unverified Internal Research
+*/
+
+/* Rule Set ----------------------------------------------------------------- */
+
+
+
+rule conti_yara {
+   meta:
+      description = "Conti Ransomware YARA Detection"
+      author = "Jonathon Sweeney"
+      reference = "Internal Research - ALL YARA RULES ARE UNVERIFIED/UNTESTED!"
+      date = "2021-10-11"
+
+   strings:
+
+      $s1 = "Rimasta.exe.com" fullword ascii
+      $s2 = "cmd /c cmd < " fullword ascii
+      $s3 = "start Rimasta.exe.com J" fullword ascii
+      $s4 = "Set iLYXf=ping localhost" fullword ascii
+      $s5 = "<nul set /p = \" fullword ascii
+      $s6 = "if %computername%==%" fullword ascii
+      $s7 = "Adyask44.elo" fullword ascii
+      $s8 = "Passaggio.docm" fullword ascii
+      $s9 = "Vederlo.docm" fullword ascii
+      $s10 = "Nobile.docm" fullword ascii
+      $s11 = "Vedi.xlsx" fullword ascii
+      $s12 = "Orrore.xlsx" fullword ascii
+      $s13 = "Benvenuta.xlsx" fullword ascii
+      $s14 = "Corpo.xlsx" fullword ascii
+      $s15 = "Molle.xlsm" fullword ascii
+      $s16 = "Voto.xlsm" fullword ascii
+      $s17 = "Volle.xlsm" fullword ascii
+      $s18 = "Voce.cda" fullword ascii
+      $s19 = "Verita.cda" fullword ascii
+      $s20 = "Natura.cda" fullword ascii
+      $s21 = "Compatto.adts" fullword ascii
+      $s22 = "Troveresti.vob" fullword ascii
+      $s23 = "Vede.vob" fullword ascii
+      $s24 = "Prende.vob" fullword ascii
+      $s25 = "Abbozzo.vob" fullword ascii
+      $s26 = "Pei.xll" fullword ascii
+      $s27 = "Passa.xll" fullword ascii
+      $s28 = "Adunazione.xll" fullword ascii
+      $s29 = "Bordatino.xll" fullword ascii
+      $s30 = "Lavorato.flv" fullword ascii
+      $s31 = "Pochi.flv" fullword ascii
+      $s32 = "Strette.pot" fullword ascii
+      $s33 = "Fino.pot" fullword ascii
+      $s34 = "Ammirabile.bin" fullword ascii
+      $s35 = "Uscita.bin" fullword ascii
+      $s36 = "Conservava.bin" fullword ascii
+      $s37 = "Uscita.bin" fullword ascii
+      $s38 = "Conservava.bin" fullword ascii
+      $s39 = "Ammirabile.bin" fullword ascii
+      $s40 = "acontix.ocx" fullword wide
+      $s41 = "aconti.exe" fullword ascii
+      $s42 = "ACONTIX.OCX" fullword ascii
+      $s43 = "somedll.dll" fullword ascii
+      $s44 = "EYINZEB.EXE            .MDR" fullword wide
+      $s45 = "OKUARVB.EXE            .SQI" fullword wide
+      $s46 = "NSTARXP.EXE            .NDP" fullword wide
+      $s47 = "GUEBJJR.EXE            .WAT" fullword wide
+      $s48 = "KQGQMRQ.EXE            .SOT" fullword wide
+      $s49 = "BDERYEQ.EXE            .IHL" fullword wide
+      $s50 = "CPSSZUT.EXE            .MZN" fullword wide
+      $s51 = "NAGQQSB.EXE            .CVI" fullword wide
+      $s52 = "RyukReadMe.txt" fullword wide
+      $s53 = "<foX:\\n~" fullword ascii
+      $s54 = "To make sure that we REALLY CAN get your data back - we offer you to decrypt 2 random files completely free of charge." fullword ascii
+      $s55 = "(you should download and install TOR browser first https://torproject.org)" fullword ascii
+      $s56 = "As you know (if you don't - just \"google it\"), all of the data that has been encrypted by our software cannot be recovered by " fullword ascii
+      $s57 = "If you try to use any additional recovery software - the files might be damaged, so if you are willing to try - try it on the da" fullword ascii
+      $s58 = "Just in case, if you try to ignore us. We've downloaded a pack of your internal data and are ready to publish it on out news web" fullword ascii
+      $s59 = "All of your files are currently encrypted by CONTI strain. " fullword ascii
+      $s60 = "site if you do not respond. So it will be better for both sides if you contact us as soon as possible." fullword ascii
+      $s61 = "y means without contacting our team directly. " fullword ascii
+      $s62 = "YOU SHOULD BE AWARE!" fullword ascii
+      $s63 = "ta of the lowest value." fullword ascii
+      $s64 = "The network is LOCKED. Do not try to use other software. For decryption KEY write HERE:" fullword ascii
+      $s65 = "TOR VERSION :" fullword ascii
+      $s66 = " OpenProcessToken.3" fullword wide
+      $s67 = ">ENCRYPTOR SCRIPT<" fullword ascii
+      $s68 = "aconti Download-Manager" fullword wide
+      $s69 = "AcontiX Control" fullword wide
+      $s70 = "aconti" fullword ascii
+      $s71 = "http://contirecj4hbzmyzuydyzrvm2c65blmvhoj2cvf25zqj2dwrrqcq5oad.onion/" fullword ascii
+      $s72 = "https://contirecovery.click" fullword ascii
+      $s73 = "http://m232fdxbfmbrcehbrj5iayknxnggf6niqfj6x4iedrgtab4qupzjlaid.onion" fullword ascii
+      $s74 = "https://contirecovery.info " fullword ascii
+      $s75 = "https://contirecovery.xyz/" fullword ascii
+      $s76 = "flapalinta1950@protonmail.com" fullword ascii
+      $s77 = "xersami@protonmail.com" fullword ascii
+      $s78 = "info@burnaware.com0" fullword ascii
+      $s79 = "flapalinta1950@protonmail.com" fullword ascii
+
+condition:
+          (uint16(0) == 0x5a4d or uint16(0) == 0x6c41)
+
+ and filesize < 9000KB and 8 of ($s*)
+
+}
