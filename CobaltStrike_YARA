@@ -1,4 +1,3 @@
-
 rule CobaltStrike {
    meta:
       description = "CobaltStrike"
