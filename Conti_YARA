@@ -1,15 +1,3 @@
-/*
-   YARA Rule Set
-   Author: Jonathon Sweeney
-   Date: 2021-10-08
-   Identifier: Malware
-   Reference: Internal Research
-*/
-
-/* Rule Set ----------------------------------------------------------------- */
-
-
-
 rule conti_yara {
    meta:
       description = "Conti Ransomware YARA Detection"
