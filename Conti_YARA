@@ -1,3 +1,24 @@
+/*
+   YARA Rule Set
+   Author: Jonathon Sweeney
+   Date: 2021-10-08
+   Identifier: Malware
+   Reference: Internal Research
+*/
+
+/* Rule Set ----------------------------------------------------------------- */
+
+
+
+rule conti_yara {
+   meta:
+      description = "Conti Ransomware YARA Detection"
+      author = "Jonathon Sweeney"
+      reference = "Internal Research"
+      date = "2021-10-11"
+
+   strings:
+
       $s1 = "Rimasta.exe.com" fullword ascii
       $s2 = "cmd /c cmd < " fullword ascii
       $s3 = "start Rimasta.exe.com J" fullword ascii
