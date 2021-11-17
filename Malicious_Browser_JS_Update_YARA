@@ -8,21 +8,21 @@ rule malicious_browser_update {
    strings:
       $s1 = "+ encodeURIComponent(''+" fullword ascii
       $s2 = "= (new Date)['getTime']();" fullword ascii
-      $s4 = "['open']('POST'," ascii
-      $s6 = "['substr'](2);" fullword ascii
-      $s8 = " = new ActiveXObject('MSXML2.XMLHTTP');" fullword ascii
-      $s9 = "['toString']" fullword ascii
-      $s10 = "return" fullword ascii
-      $s12 = "['send']" fullword ascii
-      $s13 = "function" fullword ascii
-      $s14 = "['status']" fullword ascii
-      $s17 = "sendRequest(" fullword ascii
-      $s18 = "while (" fullword ascii
-      $s19 = "['responseText'];" fullword ascii
-      $s20 = "String['fromCharCode']" fullword ascii
-      $s21 = "+ 10000;" fullword ascii
-      $s22 =  "= '';" fullword ascii
-      $s23 = "if(typeof" fullword ascii
+      $s3 = "['open']('POST'," ascii
+      $s4 = "['substr'](2);" fullword ascii
+      $s5 = " = new ActiveXObject('MSXML2.XMLHTTP');" fullword ascii
+      $s6 = "['toString']" fullword ascii
+      $s7 = "return" fullword ascii
+      $s8 = "['send']" fullword ascii
+      $s9 = "function" fullword ascii
+      $s10 = "['status']" fullword ascii
+      $s11 = "sendRequest(" fullword ascii
+      $s12 = "while (" fullword ascii
+      $s13 = "['responseText'];" fullword ascii
+      $s14 = "String['fromCharCode']" fullword ascii
+      $s15 = "+ 10000;" fullword ascii
+      $s16 =  "= '';" fullword ascii
+      $s17 = "if(typeof" fullword ascii
 
    condition:
       uint16(0) == 0x6176 and filesize < 7KB and
