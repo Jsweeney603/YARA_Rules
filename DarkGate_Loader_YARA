@@ -2,8 +2,8 @@ rule DarkGate_Samples {
    meta:
       description = "Detects DarkGate samples which attempt to call C2 for Autoit3.exe which is executed with .au3 argument. NOTE: The port number for the C2 may change over time!"
       author = "Jonathon Sweeney"
-      reference = "Log4j Research"
-      date = "2022-01-06"
+      reference = "DarkGate Research"
+      date = "2023-12-20"
   
   strings:
     $0 = " -H \"User-Agent: curl\" -o Autoit3.exe http://"
